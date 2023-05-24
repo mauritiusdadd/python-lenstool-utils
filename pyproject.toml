@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lenstool_utils"
+version = "0.2.0"
+description = "A set of utility function and wrappers for lenstool"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {file = "LICENSE"}
+keywords = ["astronomy"]
+authors = [
+ {name = "Maurizio D'Addona"},
+ {email = "mauritiusdadd@gmail.com"}
+]
+maintainers = [
+ {name = "Maurizio D'Addona"},
+ {email = "mauritiusdadd@gmail.com"}
+]
+classifiers = [
+        # How mature is this project? Common values are
+        #   3 - Alpha
+        #   4 - Beta
+        #   5 - Production/Stable
+        "Development Status :: 3 - Alpha",
+        # Indicate who your project is intended for
+        "Intended Audience :: Science/Research",
+        "Topic :: Multimedia :: Graphics :: Graphics Conversion",
+        # Specify the Python versions you support here. In particular, ensure
+        # that you indicate whether you support Python 2, Python 3 or both.
+        "Programming Language :: Python :: 3",
+]
+
+dependencies = [
+    "astropy",
+    "matplotlib",
+    "numpy"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+lenstool = ["data_model.json"]
+
+[project.optional-dependencies]
+test = [
+  "pytest",
+]
+
+[project.scripts]
+lenstool_wrapper = "lenstool_utils.lenstool_wrapper:main"
+lenstool_gui = "lenstool_utils.lenstool_gui:main"
+chires2plot = "lenstool_utils.plotting:chires2plots"
