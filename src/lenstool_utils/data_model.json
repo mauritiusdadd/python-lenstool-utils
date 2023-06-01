@@ -1,0 +1,1573 @@
+{
+  "runmode": {
+    "reference": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "inverse": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": false
+      }
+    },
+    "image": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "source": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "time": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "int",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "ampli": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "int",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "poten": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "int",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "mass": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "int",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "shear": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "int",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "shearfield": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "unknown",
+        "required": true
+      },
+      "3": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "imseeing": {
+      "0": {
+        "type": "float",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "grid": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "int",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "minchi0": {
+      "0": {
+        "type": "float",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "pixel": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "int",
+        "required": true
+      },
+      "2": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "verbose": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "marker": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "radialprop": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "dpl": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "int",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "unknown",
+        "required": true
+      },
+      "4": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "restart": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "int",
+        "required": true
+      }
+    }
+  },
+  "grille": {
+    "nombre": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "polaire": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "nlentille": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "nlens_opt": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "nlens_crit": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    }
+  },
+  "potentiel": {
+    "profil": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "x_centre": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "y_centre": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "x_centre_wcs": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "y_centre_wcs": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "masse": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "pmass": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "ellipticite": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "ellip_pot": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "angle_pos": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "core_radius": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "core_radius_kpc": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "cut_radius": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "cut_radius_kpc": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "v_disp": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "exponent": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "alpha": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "beta": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "z_lens": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "mag": {
+      "0": {
+        "type": "float",
+        "required": false
+      }
+    }
+  },
+  "limit": {
+    "x_centre": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "y_centre": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "ellipticite": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "angle_pos": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "core_radius": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "cut_radius": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "core_radius_kpc": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "cut_radius_kpc": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "v_disp": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "exponent": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "alpha": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "beta": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    }
+  },
+  "potfile": {
+    "filein": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "type": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "mag0": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "zlens": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "sigma": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "core": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "corekpc": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "cut": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "cutkpc": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "slope": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "vdslope": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      }
+    }
+  },
+  "dynfile": {},
+  "shapemodel": {
+    "s_center_x": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "s_center_y": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "s_sigx": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "s_sigy": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "s_angle": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "s_mag": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "index": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "z": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "id": {
+      "0": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "type": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    }
+  },
+  "champ": {
+    "xmin" : {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "xmax" : {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "ymin" : {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "ymax" : {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "dmax" : {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    }
+  },
+  "shapelimit": {
+    "s_center_x": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "s_center_y": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "s_sig_x": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "s_sig_y": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "s_angle": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "s_mag": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "index": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    }
+  },
+  "grande": {
+    "large_dist": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "profil": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "contour": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "iso": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "int",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      },
+      "4": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "name" : {
+      "0": {
+        "type": "str",
+        "required": true
+      }
+    },
+    "vitesse": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    }
+  },
+  "cline": {
+    "nplan": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": false
+      }
+    },
+    "zonemult": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "int",
+        "required": true
+      },
+      "2": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "dmax": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "algorithm": {
+      "0": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "step": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "limitLow": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "limitHigh": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    }
+  },
+  "observ": {
+    "noise": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "sky": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "idum": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "dispersion": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "prec": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "seeing": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "seeing_e": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "psf": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "binning": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "int",
+        "required": true
+      }
+    }
+  },
+  "cosmologie": {
+    "model": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "H0": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "omegaM": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "omegaX": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "omegaK": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "wX": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "wa": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    }
+  },
+  "cleanlens": {
+    "cleanset": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "c_image": {
+      "0": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "imframe": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "psfframe": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "sframe": {
+      "0": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "wframe": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "ncont": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "contour": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "subsamp": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "s_subsamp": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "s_n": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "s_xmin": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "s_xmax": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "s_ymin": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "s_ymax": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "pixel": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "column": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "header": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "pixelx": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "pixely": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "xmin": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "ymin": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    }
+  },
+  "image": {
+    "multfile": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "mult_wcs": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "forme": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "z_m_limit": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "unknown",
+        "required": true
+      },
+      "2": {
+        "type": "int",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      },
+      "4": {
+        "type": "float",
+        "required": true
+      },
+      "5": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "arcletstat": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "int",
+        "required": true
+      },
+      "2": {
+        "type": "unknown",
+        "required": true
+      }
+    },
+    "sigell": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "z_arclet": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "critic": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      },
+      "3": {
+        "type": "float",
+        "required": true
+      },
+      "4": {
+        "type": "float",
+        "required": true
+      },
+      "5": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "newton": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "sigposArcsec":{
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    }
+  },
+  "source": {
+    "grid": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "random": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "n_source": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
+    "elip_max": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "dist_z": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "z_source": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "taille": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "smail": {
+      "0": {
+        "type": "float",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      }
+    }
+  }
+}
