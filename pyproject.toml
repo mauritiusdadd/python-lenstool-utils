@@ -53,3 +53,4 @@ test = [
 lenstool_wrapper = "lenstool_utils.lenstool_wrapper:main"
 lenstool_gui = "lenstool_utils.lenstool_gui:main"
 chires2plot = "lenstool_utils.plotting:chires2plots"
+bayes2fits = "lenstool_utils.bayes2fits:main"
