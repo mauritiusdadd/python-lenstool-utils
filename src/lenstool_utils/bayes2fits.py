@@ -1,3 +1,5 @@
+import numpy as np
+
 from argparse import ArgumentParser
 from tqdm import tqdm
 from astropy.table import Table
@@ -37,16 +39,23 @@ def main(options=None):
             break
         colnames.append(text[1:])
 
-    myt = Table(names=colnames)
-    print(colnames)
-    print(myt)
+    n_cols = len(colnames)
+    n_rows = len(datalines) - j
+
+    myt = Table(names=colnames, data=np.zeros((n_rows, n_cols)))
+    print(f"Found {len(colnames)} columns...")
 
     for j, header_line in enumerate(tqdm(datalines[index:])):
         data = header_line.strip().split()
-        myt.add_row(data)
+        try:
+            myt[j] = data
+        except Exception as exc:
+            print(f"ERROR on line {j + index + 1}:", str(exc))
+            print(f"N COLS: {len(colnames)}")
+            print(f"N VALS: {len(data)}")
 
     myt.write(args.bayesfile + '.fits', overwrite=True)
 
 
 if __name__ == '__main__':
-    main()
+    main(["/home/daddona/dottorato/Y1/muse_cubes/PLCKG287/lenstool/v2/v2.2_experiments/v2.2.7_gold_v11.0_3h_runmode3/results_runmode3/bayes.dat"])
