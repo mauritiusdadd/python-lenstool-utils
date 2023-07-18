@@ -9,7 +9,6 @@ import warnings
 
 import numpy as np
 
-from tqdm import tqdm
 from astropy.table import Table
 
 from . import datamodel
@@ -76,7 +75,13 @@ class BayesDat():
         print(f"\nFound {n_cols:d} columns...", file=sys.stderr)
         print(f"Reading {n_rows:d} lines...", file=sys.stderr)
 
-        for j, header_line in enumerate(tqdm(datalines[index:])):
+        for j, header_line in enumerate(datalines[index:]):
+            prog = j / (len(datalines) - index)
+            pbar = lenstool_wrapper.printpbar(prog, prog)
+
+            sys.stderr.write(f'\r{pbar}\r')
+            sys.stderr.flush()
+
             data = header_line.strip().split()
             try:
                 myt[j] = data
@@ -232,7 +237,7 @@ class BayesDat():
 
 
 def bayesMapPP(bayes_file, par_file, out_dir='bayesmap_out', tail=None,
-               random_sample=None, verbose=False):
+               random_sample=None, n_jobs=4, no_tempfs=False, verbose=False):
     """
     Run lenstool using the given par file with data from bayes.dat.
 
@@ -269,7 +274,27 @@ def bayesMapPP(bayes_file, par_file, out_dir='bayesmap_out', tail=None,
                     os.path.join(j_tempd.name, file_to_copy),
                     os.path.join(j_out_dir, file_to_copy)
                 )
+            time.sleep(0.1)
             j_tempd.cleanup()
+
+    def _report_progress(j, tot, lt_process_list, state='Running'):
+        running_prog = 0
+        n_running_jobs = len(lt_process_list)
+        for _, _, j_lt_p, _ in lt_process_list:
+            running_prog += j_lt_p.global_progress
+
+        total_prog = (j - n_running_jobs + running_prog) / tot
+
+        pbar = lenstool_wrapper.printpbar(
+            running_prog/n_running_jobs if n_running_jobs else 0,
+            total_prog
+        )
+        print(
+            f"\r{state}: {pbar} {total_prog: 6.2%} "
+            f"[{n_running_jobs:d} | {j - n_running_jobs:d}/{tot}]",
+            end='\r',
+            file=sys.stderr
+        )
 
     model_dir = os.path.dirname(os.path.realpath(par_file))
     map_out_dir = os.path.join(model_dir, out_dir)
@@ -284,44 +309,70 @@ def bayesMapPP(bayes_file, par_file, out_dir='bayesmap_out', tail=None,
     if random_sample:
         bd = bd.random_sample(random_sample)
 
-    lt_max_processes = 10
+    lt_max_processes = n_jobs
     lt_processes = []
 
+    if no_tempfs:
+        root_tmp_dir = tempfile.TemporaryDirectory(dir='.')
+    else:
+        root_tmp_dir = None
+
     print("\nRunning lenstool...", file=sys.stdout)
-    for j in tqdm(range(len(bd.data))):
-        while len(lt_processes) >= lt_max_processes:
+    n_entries = len(bd.data)
+    try:
+        for j in range(n_entries):
+            while len(lt_processes) >= lt_max_processes:
+                _loop(lt_processes)
+                _report_progress(j, n_entries, lt_processes)
+
+            tempd = tempfile.TemporaryDirectory(dir=root_tmp_dir.name)
+
+            updated_par = bd.updateParFile(par_file, j)
+            updated_par.get_runmode().set_parameter_values(
+                'inverse', [0, 0.5, 1]
+            )
+
+            tmp_parfile = os.path.join(tempd.name, 'input.par')
+            with open(tmp_parfile, 'w') as f:
+                f.write(str(updated_par))
+
+            # Copy auxiliary files to tempd
+            for fid, idname in [('potfile', 'filein'), ('image', 'multfile')]:
+                for fid in updated_par.get_identifier(fid):
+                    file_name = fid.get_parameter_values(idname)[1]
+                    shutil.copy(
+                        os.path.join(model_dir, file_name),
+                        os.path.join(tempd.name, file_name),
+                    )
+
+            lt_wrap = lenstool_wrapper.LensToolWrapper(n_threads=1)
+            lt_wrap.run(tmp_parfile)
+
+            lt_processes.append(
+                (j, tempd, lt_wrap, map_out_dir)
+            )
+
+        print(
+            "Waiting for the remaing processes to finish...", file=sys.stderr
+        )
+
+        while lt_processes:
             _loop(lt_processes)
-
-        tempd = tempfile.TemporaryDirectory()
-
-        updated_par = bd.updateParFile(par_file, j)
-        updated_par.get_runmode().set_parameter_values(
-            'inverse', [0, 0.5, 1]
+            _report_progress(n_entries, n_entries, lt_processes)
+    except KeyboardInterrupt:
+        print(
+            "\n\nStopping the remaining running processes...\n\n",
+            file=sys.stderr
         )
+        while lt_processes:
+            j, j_tempd, j_lt_p, j_out_dir = lt_processes.pop()
+            if j_lt_p._lenstool_popen.poll() is not None:
+                continue
+            j_lt_p.kill()
+            _report_progress(n_entries, n_entries, lt_processes, 'Stopping')
 
-        tmp_parfile = os.path.join(tempd.name, 'input.par')
-        with open(tmp_parfile, 'w') as f:
-            f.write(str(updated_par))
-
-        # Copy auxiliary files to tempd
-        for fid, idname in [('potfile', 'filein'), ('image', 'multfile')]:
-            for fid in updated_par.get_identifier(fid):
-                file_name = fid.get_parameter_values(idname)[1]
-                shutil.copy(
-                    os.path.join(model_dir, file_name),
-                    os.path.join(tempd.name, file_name),
-                )
-
-        lt_wrap = lenstool_wrapper.LensToolWrapper(n_threads=1)
-        lt_wrap.run(tmp_parfile)
-
-        lt_processes.append(
-            (j, tempd, lt_wrap, map_out_dir)
-        )
-
-    print("Waiting for the remaing processes to finish...")
-    while lt_processes:
-        _loop(lt_processes)
+    if root_tmp_dir is not None:
+        root_tmp_dir.cleanup()
 
 
 def execBayesMapPP(options=None):
@@ -369,9 +420,22 @@ def execBayesMapPP(options=None):
     )
 
     parser.add_argument(
+        '--n-jobs', '-j', type=int, default=4, metavar='N',
+        help='Set the number of cuncurrent lenstool instances to run. '
+        'The default value is %default)s=%(metavar)s.'
+    )
+
+    parser.add_argument(
         '--verbose', '-v', action='store_true', default=False,
         help='increase the verbosity of the output.'
     )
+
+    parser.add_argument(
+        '--no-tempfs', action='store_true', default=False,
+        help='Do not use /tmp to store temporary files, instead use a '
+        'temporary directory in the current work directory.'
+    )
+
     args = parser.parse_args(options)
 
     bayesMapPP(
@@ -380,5 +444,7 @@ def execBayesMapPP(options=None):
         args.outdir,
         verbose=args.verbose,
         tail=args.tail,
-        random_sample=args.random_sample
+        random_sample=args.random_sample,
+        n_jobs=args.n_jobs,
+        no_tempfs=args.no_tempfs
     )

@@ -130,6 +130,11 @@ class LensToolWrapper():
             cur, tot = values[3].split('/')
             self.global_progress = 1.0
             self.partial_progress = float(cur) / float(tot)
+        elif (status_string == 'info:') and (values[1] == 'Compute'):
+            self.state = 'Computing'
+            cur, tot = values[-1].split('/')
+            self.global_progress = float(cur) / float(tot)
+            self.partial_progress = float(cur) / float(tot)
         else:
             out = line
 
@@ -159,15 +164,11 @@ class LensToolWrapper():
             return
 
         unparsed_out = []
-        for i in range(100):
-            try:
-                line = self._data_queue.get_nowait()
-            except queue.Empty:
-                break
-            else:
-                out = self.parsedataline(line.decode().strip())
-                if out:
-                    unparsed_out.append(out)
+        while not self._data_queue.empty():
+            line = self._data_queue.get_nowait()
+            out = self.parsedataline(line.decode().strip())
+            if out:
+                unparsed_out.append(out)
 
         return '\n'.join(unparsed_out)
 
@@ -213,6 +214,10 @@ class LensToolWrapper():
             def parse_buff(buff, stdfile):
                 new_data = stdfile.read()
 
+                if queue.full():
+                    del new_data
+                    return b""
+
                 if new_data:
                     buff += new_data.replace(b'\r', b'\n')
 
@@ -226,9 +231,14 @@ class LensToolWrapper():
             err_buff = b""
 
             while p.poll() is None:
+
+                if queue.full():
+                    out_buff=b""
+                    err_buff=b""
+
                 out_buff += parse_buff(out_buff, p.stdout)
                 err_buff += parse_buff(err_buff, p.stderr)
-                time.sleep(0.01)
+                time.sleep(0.5)
 
         my_env = os.environ.copy()
         my_env["EDITOR"] = ""
@@ -253,7 +263,7 @@ class LensToolWrapper():
         fcntl(self._lenstool_popen.stderr, F_SETFL, flags | os.O_NONBLOCK)
 
         # Thread to read program outputs
-        self._data_queue = queue.Queue()
+        self._data_queue = queue.Queue(maxsize=100)
         self._data_thread = Thread(
             target=enqueue_output,
             args=(
@@ -265,6 +275,19 @@ class LensToolWrapper():
         # The thread dies with the program
         self._data_thread.daemon = True
         self._data_thread.start()
+
+    def kill(self):
+        """
+        Kill the current lenstool process.
+
+        Returns
+        -------
+        None.
+
+        """
+        while self._lenstool_popen is None:
+            self._lenstool_popen.kill()
+            time.sleep(0.1)
 
 
 def main():

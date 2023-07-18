@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lenstool_utils"
-version = "0.2.0"
+version = "0.3.0"
 description = "A set of utility function and wrappers for lenstool"
 readme = "README.md"
 requires-python = ">=3.7"
@@ -35,7 +35,8 @@ classifiers = [
 dependencies = [
     "astropy",
     "matplotlib",
-    "numpy"
+    "numpy",
+    "tqdm"
 ]
 
 [tool.setuptools.packages.find]
