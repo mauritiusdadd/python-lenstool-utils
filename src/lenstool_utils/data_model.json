@@ -296,6 +296,12 @@
         "required": true
       }
     },
+    "nlens": {
+      "0": {
+        "type": "int",
+        "required": true
+      }
+    },
     "nlens_crit": {
       "0": {
         "type": "int",
@@ -753,6 +759,34 @@
         "type": "float",
         "required": true
       }
+    },
+    "vdscatter": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "rcutscatter": {
+      "0": {
+        "type": "int",
+        "required": true
+      },
+      "1": {
+        "type": "float",
+        "required": true
+      },
+      "2": {
+        "type": "float",
+        "required": true
+      }
     }
   },
   "dynfile": {},
@@ -1048,7 +1082,7 @@
       },
       "1": {
         "type": "float",
-        "required": true
+        "required": false
       },
       "2": {
         "type": "float",
@@ -1206,6 +1240,18 @@
       }
     },
     "omegaK": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "omega": {
+      "0": {
+        "type": "float",
+        "required": true
+      }
+    },
+    "lambda": {
       "0": {
         "type": "float",
         "required": true

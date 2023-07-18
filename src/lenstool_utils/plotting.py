@@ -27,6 +27,11 @@ def __chires2plots_argsHandler(options=None):
     )
 
     parser.add_argument(
+        '--vertical', action='store_true', default=False,
+        help='Make plots using a vertical arrangement'
+    )
+
+    parser.add_argument(
         "chires_file", type=str, help='The chires file'
     )
 
@@ -36,6 +41,34 @@ def __chires2plots_argsHandler(options=None):
     )
 
     return parser.parse_args(options)
+
+
+def readChires(chires_file):
+    with open(chires_file, 'r') as f:
+        data_lines = f.readlines()[1:]
+
+    tot_rmss = -1
+    tot_rmsi = -1
+
+    tbl_lines = []
+
+    for line in data_lines:
+        stripped_line = line.strip()
+        if not (
+            stripped_line.startswith('chi') or
+            stripped_line.startswith('log')
+        ):
+            tbl_lines.append(line)
+        elif stripped_line.startswith('chimul'):
+            vals = stripped_line.split()
+            tot_rmss = float(vals[5]) * units.arcsec
+            tot_rmsi = float(vals[6]) * units.arcsec
+
+    tbl_data = '\n'.join(tbl_lines)
+
+    chires_tbl = Table.read(tbl_data, format='ascii')
+
+    return chires_tbl, tot_rmss, tot_rmsi
 
 
 def chires2plots(options=None):
@@ -61,26 +94,7 @@ def chires2plots(options=None):
         style_list = args.style.split(',')
         plt.style.use(style_list)
 
-    tot_rmss = -1
-    tot_rmsi = -1
-
-    tbl_lines = []
-
-    for line in data_lines:
-        stripped_line = line.strip()
-        if not (
-            stripped_line.startswith('chi') or
-            stripped_line.startswith('log')
-        ):
-            tbl_lines.append(line)
-        elif stripped_line.startswith('chimul'):
-            vals = stripped_line.split()
-            tot_rmss = float(vals[5]) * units.arcsec
-            tot_rmsi = float(vals[6]) * units.arcsec
-
-    tbl_data = '\n'.join(tbl_lines)
-
-    chires_tbl = Table.read(tbl_data, format='ascii')
+    chires_tbl, tot_rmss, tot_rmsi = readChires(args.chires_file)
     single_images = chires_tbl[chires_tbl['Narcs'] == 1]
     fam_stats = chires_tbl[chires_tbl['Narcs'] != 1]
 
@@ -115,12 +129,20 @@ def chires2plots(options=None):
         int(x) for x in fam_stats['N']
     ]
 
-    fig = plt.figure(figsize=(10, 5))
-    gs = fig.add_gridspec(2, 2)
+    if args.vertical:
+        fig = plt.figure(figsize=(5, 8))
+        gs = fig.add_gridspec(4, 1)
 
-    ax1 = fig.add_subplot(gs[:, 0])
-    ax2 = fig.add_subplot(gs[0, 1])
-    ax3 = fig.add_subplot(gs[1, 1], sharex=ax2)
+        ax1 = fig.add_subplot(gs[:2, 0])
+        ax2 = fig.add_subplot(gs[2, 0])
+        ax3 = fig.add_subplot(gs[3, 0], sharex=ax2)
+    else:
+        fig = plt.figure(figsize=(10, 5))
+        gs = fig.add_gridspec(2, 2)
+
+        ax1 = fig.add_subplot(gs[:, 0])
+        ax2 = fig.add_subplot(gs[0, 1])
+        ax3 = fig.add_subplot(gs[1, 1], sharex=ax2)
 
     ax1.scatter(
         dx, dy,
@@ -134,7 +156,7 @@ def chires2plots(options=None):
     ax1.set_ylabel('dy [arcsec]')
 
     ax1.annotate(
-        f'Total RMSi: {tot_rmsi:.3f}\nTotal RMSs: {tot_rmss:.3f}',
+        f'Total RMSi: {tot_rmsi:.2f}\nTotal RMSs: {tot_rmss:.2f}',
         xy=(0, 1),
         xytext=(12, -12),
         va='top',

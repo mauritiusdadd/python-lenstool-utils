@@ -42,7 +42,7 @@ dependencies = [
 where = ["src"]
 
 [tool.setuptools.package-data]
-lenstool = ["data_model.json"]
+lenstool_utils = ["*.json"]
 
 [project.optional-dependencies]
 test = [
@@ -54,3 +54,4 @@ lenstool_wrapper = "lenstool_utils.lenstool_wrapper:main"
 lenstool_gui = "lenstool_utils.lenstool_gui:main"
 chires2plot = "lenstool_utils.plotting:chires2plots"
 bayes2fits = "lenstool_utils.bayes2fits:main"
+bayesMapPP = "lenstool_utils.bayes:execBayesMapPP"

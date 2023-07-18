@@ -63,7 +63,7 @@ class LenstoolFirstIdentifier:
                 field_index = int(field_index)
                 self.param_fields[param_name][field_index] = field_data
 
-    def get_paramete_values(self, par_name: str) -> list:
+    def get_parameter_values(self, par_name: str) -> list:
         """
         Get the values of the parameter par_name.
 
@@ -122,7 +122,7 @@ class LenstoolFirstIdentifier:
             except IndexError as exc:
                 if not field_dm_data['required']:
                     continue
-                print(f"ERR: {par_name} field index {field_index}")
+                print(f"ERR: {self.name}.{par_name} field index {field_index}")
                 raise exc
 
             input_type = field_dm_data['type'].lower()
@@ -268,13 +268,16 @@ class ParametersDataModel:
             if not line:
                 continue
 
+            if line.startswith('potfile'):
+                line = line.replace('potfile', 'potfile ')
+
             line_data = line.split()
             if current_first_identifier is None:
                 if line_data[0] in self.__dm:
                     try:
                         identifier_index = line_data[1]
                     except IndexError:
-                        identifier_index = None
+                        identifier_index = '0'
 
                     current_first_identifier = LenstoolFirstIdentifier(
                         line_data[0],
@@ -350,7 +353,7 @@ class ParametersDataModel:
 
         """
         runmode = self.get_runmode()
-        mode, ra, dec = runmode.get_paramete_values('reference')
+        mode, ra, dec = runmode.get_parameter_values('reference')
         mode = int(mode)
         if mode == 1:
             unit = [units.hourangle, units.deg]
