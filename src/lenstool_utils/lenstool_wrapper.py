@@ -212,6 +212,9 @@ class LensToolWrapper():
 
             """
             def parse_buff(buff, stdfile):
+                if p.poll() is not None:
+                    return b""
+
                 new_data = stdfile.read()
 
                 if queue.full():
